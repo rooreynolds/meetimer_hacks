@@ -50,7 +50,7 @@ try{
   $sqlGetView = "select startdate / 1000, " .
   "strftime('%s','now') - startdate / 1000 as age, " .
   "url, duration, " . 
-  "strftime('%Y','now') || abs(strftime('%j','now')) - day -1 as daysold, " .
+  "strftime('%j', 'now') - strftime('%j', datetime(startdate / 1000, 'unixepoch') ) as daysold, " .
   "strftime('%H:%M:%S', datetime(startdate / 1000, 'unixepoch')) as time, " .
   "round(((60 * 60 * strftime('%H', datetime(startdate / 1000, 'unixepoch'))) + (60 * strftime('%M', datetime(startdate / 1000, 'unixepoch'))) + (strftime('%S', datetime(startdate / 1000, 'unixepoch')))) / 60.0 / 1440 * 1000, 1) as offset " .
   " from log " .
